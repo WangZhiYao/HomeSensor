@@ -1,0 +1,23 @@
+name: Update Submodules
+
+on:
+  repository_dispatch:
+    types: [update_submodule]
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Submodule
+        uses: actions/checkout@v4.1.7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
+
+      - name: Commit update
+        run: |
+          git submodule update --remote
+          git add .
+          git commit -m "Update submodule: `TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S'`"
+          git push origin main
