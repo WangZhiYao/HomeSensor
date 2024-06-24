@@ -1,0 +1,6 @@
+[submodule "Scheduler"]
+	path = Scheduler
+	url = https://github.com/WangZhiYao/HomeSensor-Scheduler.git
+[submodule "Subscriber"]
+	path = Subscriber
+	url = https://github.com/WangZhiYao/HomeSensor-Subscriber.git
