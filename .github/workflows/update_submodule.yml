@@ -1,6 +1,7 @@
 name: Update Submodules
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [update_submodule]
 
@@ -22,4 +23,4 @@ jobs:
           git submodule update --remote
           git add .
           git commit -m "Update submodule: `TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S'`"
-          git push origin main
+          git push origin master
