@@ -3,7 +3,7 @@
 该项目通过 MQTT 协议来控制家庭环境中的各种传感器，收集这些传感器上传的数据。  
 目前，我已经实现了使用 ESP-WROOM-32E 微控制器连接 GY-302 传感器来测量阳台的光照强度。
 
-主要技术栈：C++, kotlin, SpringBoot, MongoDB
+![structure](structure.png)
 
 ### 功能
  - 传感器控制：管理和控制家中的各种传感器 [Scheduler](https://github.com/WangZhiYao/HomeSensor-Scheduler)。
