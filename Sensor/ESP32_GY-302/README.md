@@ -11,7 +11,7 @@
    }
    ```
    `sleep`: 睡眠时间，收到该字段后立即进入深度睡眠，单位: 秒  
-   `publish_interval`: 数据上传间隔，单位: 秒
+   `publish_interval`: 数据上传间隔，单位: 秒，该配置使用 nvs 持久化
 
  - 根据配置的频率间隔向 "home/balcony/light" 主题发送光照强度数据
    ```json
