@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Submodule
         uses: actions/checkout@v4.1.7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
 
       - name: Commit update
