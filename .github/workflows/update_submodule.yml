@@ -17,6 +17,8 @@ jobs:
 
       - name: Commit update
         run: |
+          git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --local user.name 'github-actions[bot]'
           git submodule update --remote
           git add .
           git commit -m "Update submodule: `TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S'`"
