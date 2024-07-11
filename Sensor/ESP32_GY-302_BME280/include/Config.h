@@ -2,22 +2,26 @@
 #define CONFIG_H
 
 #include <Preferences.h>
+#include "ArduinoJson.h"
 
 namespace
 {
     const char *KEY_PUBLISH_INTERVAL = "pub_interval";
+    const char *KEY_LIGHT_ENABLE = "light_enable";
 }
 
 class Config
 {
 public:
-    Config(const char *name);
+    Config(const char *name = "config");
 
     const int DEFAULT_PUBLISH_INTERVAL = 10;
 
+    void updateConfig(JsonDocument doc);
+
     int getPublishInterval();
 
-    bool setPublishInterval(int publishInterval);
+    bool isLightEnable();
 
 private:
     Preferences preferences;
