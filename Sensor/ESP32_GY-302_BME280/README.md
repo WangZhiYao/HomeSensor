@@ -11,7 +11,7 @@
    }
    ```
    
-   `pub_interval`: 数据上传间隔，单位: 秒
+   `pub_interval`: 数据上传间隔，单位: 秒  
    `light_enable`: 是否启用光照传感器
 
  - 根据配置的频率间隔向 `home/balcony` 主题发送温度(℃)，湿度(%)，气压(hPa)
