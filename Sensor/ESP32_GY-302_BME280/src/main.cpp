@@ -192,11 +192,11 @@ void handleConfig(String configJson)
 
   config.updateConfig(doc);
 
-  if (doc.containsKey("publish_interval"))
+  if (doc.containsKey(KEY_PUBLISH_INTERVAL))
   {
-    int publishInterval = doc["publish_interval"].as<int>();
+    int pubInterval = doc[KEY_PUBLISH_INTERVAL].as<int>();
     ticker.detach();
-    ticker.attach(publishInterval, publishData);
+    ticker.attach(pubInterval, publishData);
   }
 }
 
