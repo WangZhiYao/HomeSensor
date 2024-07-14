@@ -18,6 +18,7 @@
    ```json
    {
        "sensorId": "1c87c3182ec8",
+       "type": "thp",
        "timestamp": 1720708139,
        "data": {
            "temperature": 29.05999947,
@@ -31,6 +32,7 @@
    ```json
    {
        "sensorId": "1c87c3182ec8",
+       "type": "light",
        "timestamp": 1720708239,
        "data": {
            "light": 36
