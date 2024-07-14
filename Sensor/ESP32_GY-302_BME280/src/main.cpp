@@ -230,12 +230,13 @@ void publishData()
   float humidity = bme280.readHumidity();
 
   JsonDocument doc;
-  doc["sensorId"] = sensorId;
-  doc["timestamp"] = timestamp;
+  doc["sensor_id"] = sensorId;
+  doc["type"] = "thp";
   JsonObject data = doc["data"].to<JsonObject>();
   data["temperature"] = temperature;
-  data["pressure"] = pressure;
   data["humidity"] = humidity;
+  data["pressure"] = pressure;
+  doc["timestamp"] = timestamp;
 
   String json;
   serializeJson(doc, json);
@@ -250,6 +251,7 @@ void publishData()
 
   if (config.isLightEnable())
   {
+    doc["type"] = "light";
     data.clear();
     float light = readLightLevel();
     data["light"] = round(light);
