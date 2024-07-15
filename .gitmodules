@@ -4,3 +4,6 @@
 [submodule "Subscriber"]
 	path = Subscriber
 	url = https://github.com/WangZhiYao/HomeSensor-Subscriber.git
+[submodule "Controller"]
+	path = Controller
+	url = https://github.com/WangZhiYao/HomeSensor-Controller.git
