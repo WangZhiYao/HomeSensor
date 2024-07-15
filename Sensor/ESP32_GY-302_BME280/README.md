@@ -6,15 +6,15 @@
  - 订阅 `sensor/{sensorId}/config` 主题配置下发
    ```json
    {
-       "pub_interval": 10,
-       "light_enable": true
+       "collect_interval": 10,
+       "collect_illuminance": true
    }
    ```
    
-   `pub_interval`: 数据上传间隔，单位: 秒  
-   `light_enable`: 是否启用光照传感器
+   `collect_interval`: 数据上传间隔，单位: 秒  
+   `collect_illuminance`: 是否启用光照传感器
 
- - 根据配置的频率间隔向 `home/balcony` 主题发送温度(℃)，湿度(%)，气压(hPa)
+ - 根据配置的频率间隔向 `home/balcony/thp` 主题发送温度(℃)，湿度(%)，气压(hPa)
    ```json
    {
        "sensorId": "1c87c3182ec8",
@@ -28,14 +28,14 @@
    }
    ```
    
- - 根据配置的频率间隔向 `home/balcony/light` 主题发送光照强度(lux)
+ - 根据配置的频率间隔向 `home/balcony/illuminance` 主题发送光照强度(lux)
    ```json
    {
        "sensorId": "1c87c3182ec8",
-       "type": "light",
+       "type": "illuminance",
        "timestamp": 1720708239,
        "data": {
-           "light": 36
+           "illuminance": 36
        }
    }
    ```

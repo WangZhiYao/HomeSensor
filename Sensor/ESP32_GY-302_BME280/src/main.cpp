@@ -21,8 +21,8 @@ const char *mqttBroker = "mqttBroker";
 const int mqttPort = 1883;
 const char *mqttUsername = "mqttUsername";
 const char *mqttPassword = "mqttPassword";
-const char *balconyTopic = "home/balcony";
-const char *lightTopic = "home/balcony/light";
+const char *thpTopic = "home/balcony/thp";
+const char *illuminanceTopic = "home/balcony/illuminance";
 
 Config config;
 
@@ -46,8 +46,8 @@ void initBH1750();
 void initBME280();
 void callback(char *topic, byte *payload, unsigned int length);
 void handleConfig(String configJson);
-float readLightLevel();
-void publishData();
+float readIlluminance();
+void collectData();
 
 void setup()
 {
@@ -64,7 +64,7 @@ void setup()
   initBH1750();
   initBME280();
 
-  ticker.attach(config.getPublishInterval(), publishData);
+  ticker.attach(config.getCollectInterval(), collectData);
 
   toggleLed(false);
 }
@@ -192,15 +192,14 @@ void handleConfig(String configJson)
 
   config.updateConfig(doc);
 
-  if (doc.containsKey(KEY_PUBLISH_INTERVAL))
+  if (doc.containsKey(KEY_COLLECT_INTERVAL))
   {
-    int pubInterval = doc[KEY_PUBLISH_INTERVAL].as<int>();
     ticker.detach();
-    ticker.attach(pubInterval, publishData);
+    ticker.attach(config.getCollectInterval(), collectData);
   }
 }
 
-float readLightLevel()
+float readIlluminance()
 {
   if (!bh1750.measurementReady(true))
   {
@@ -209,7 +208,7 @@ float readLightLevel()
   return bh1750.readLightLevel();
 }
 
-void publishData()
+void collectData()
 {
   if (WiFi.status() != WL_CONNECTED || !client.connected())
   {
@@ -240,29 +239,28 @@ void publishData()
 
   String json;
   serializeJson(doc, json);
-  if (client.publish(balconyTopic, json.c_str()))
+  if (client.publish(thpTopic, json.c_str()))
   {
-    Serial.println("Publish success: [" + String(balconyTopic) + "] data: " + json);
+    Serial.println("Publish success: [" + String(thpTopic) + "] data: " + json);
   }
   else
   {
-    Serial.println("Publish failed: [" + String(balconyTopic) + "] data: " + json);
+    Serial.println("Publish failed: [" + String(thpTopic) + "] data: " + json);
   }
 
-  if (config.isLightEnable())
+  if (config.collectIlluminance())
   {
-    doc["type"] = "light";
+    doc["type"] = "illuminance";
     data.clear();
-    float light = readLightLevel();
-    data["light"] = round(light);
+    data["illuminance"] = round(readIlluminance());
     serializeJson(doc, json);
-    if (client.publish(lightTopic, json.c_str()))
+    if (client.publish(illuminanceTopic, json.c_str()))
     {
-      Serial.println("Publish success: [" + String(lightTopic) + "] data: " + json);
+      Serial.println("Publish success: [" + String(illuminanceTopic) + "] data: " + json);
     }
     else
     {
-      Serial.println("Publish failed: [" + String(lightTopic) + "] data: " + json);
+      Serial.println("Publish failed: [" + String(illuminanceTopic) + "] data: " + json);
     }
   }
 }

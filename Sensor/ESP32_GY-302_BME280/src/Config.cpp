@@ -18,28 +18,28 @@ Config::Config(const char *name)
 
 void Config::updateConfig(JsonDocument doc)
 {
-    if (doc.containsKey(KEY_PUBLISH_INTERVAL))
+    if (doc.containsKey(KEY_COLLECT_INTERVAL))
     {
-        int publishInterval = doc[KEY_PUBLISH_INTERVAL].as<int>();
-        Serial.print("Set publish interval to: ");
-        Serial.println(publishInterval);
-        preferences.putInt(KEY_PUBLISH_INTERVAL, publishInterval);
+        int collectInterval = doc[KEY_COLLECT_INTERVAL].as<int>();
+        Serial.print("Set collect interval to: ");
+        Serial.println(collectInterval);
+        preferences.putInt(KEY_PREF_COLLECT_INTERVAL, collectInterval);
     }
-    if (doc.containsKey(KEY_LIGHT_ENABLE))
+    if (doc.containsKey(KEY_COLLECT_ILLUMINANCE))
     {
-        bool lightEnable = doc[KEY_LIGHT_ENABLE].as<bool>();
-        Serial.print("Set light enable to: ");
-        Serial.println(lightEnable);
-        preferences.putBool(KEY_LIGHT_ENABLE, lightEnable);
+        bool collectIlluminance = doc[KEY_COLLECT_ILLUMINANCE].as<bool>();
+        Serial.print("Set collect illuminance to: ");
+        Serial.println(collectIlluminance);
+        preferences.putBool(KEY_PREF_COLLECT_ILLUMINANCE, collectIlluminance);
     }
 }
 
-int Config::getPublishInterval()
+int Config::getCollectInterval()
 {
-    return preferences.getInt(KEY_PUBLISH_INTERVAL, DEFAULT_PUBLISH_INTERVAL);
+    return preferences.getInt(KEY_PREF_COLLECT_INTERVAL, DEFAULT_COLLECT_INTERVAL);
 }
 
-bool Config::isLightEnable()
+bool Config::collectIlluminance()
 {
-    return preferences.getBool(KEY_LIGHT_ENABLE, true);
+    return preferences.getBool(KEY_PREF_COLLECT_ILLUMINANCE, true);
 }

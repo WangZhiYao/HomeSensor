@@ -6,8 +6,11 @@
 
 namespace
 {
-    const char *KEY_PUBLISH_INTERVAL = "pub_interval";
-    const char *KEY_LIGHT_ENABLE = "light_enable";
+    const char *KEY_COLLECT_INTERVAL = "collect_interval";
+    const char *KEY_COLLECT_ILLUMINANCE  = "collect_illuminance";
+
+    const char *KEY_PREF_COLLECT_INTERVAL = "clc_intvl";
+    const char *KEY_PREF_COLLECT_ILLUMINANCE = "clc_illum";
 }
 
 class Config
@@ -15,13 +18,13 @@ class Config
 public:
     Config(const char *name = "config");
 
-    const int DEFAULT_PUBLISH_INTERVAL = 10;
+    const int DEFAULT_COLLECT_INTERVAL = 10;
 
     void updateConfig(JsonDocument doc);
 
-    int getPublishInterval();
+    int getCollectInterval();
 
-    bool isLightEnable();
+    bool collectIlluminance();
 
 private:
     Preferences preferences;
