@@ -11,8 +11,8 @@
 ### 模块
 
  - [Subscriber](https://github.com/WangZhiYao/HomeSensor-Subscriber)：数据收集：收集并记录传感器的数据，便于监控和分析 
- - [Scheduler](https://github.com/WangZhiYao/HomeSensor-Scheduler)：传感器调度：根据各种规则更改传感器配置 
- - [Controller](https://github.com/WangZhiYao/HomeSensor-Controller)：控制器：根据 Scheduler 更新传感器配置
+ - [Scheduler](https://github.com/WangZhiYao/HomeSensor-Scheduler)：传感器调度：根据各种规则更改传感器配置，发布事件通知 
+ - [Controller](https://github.com/WangZhiYao/HomeSensor-Controller)：控制器：根据 Scheduler 发布的事件通知控制传感器
 
 ### TODO
  - [x]  更多传感器：集成更多传感器（例如，温度、湿度、气压）以扩展监控能力。
