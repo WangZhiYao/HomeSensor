@@ -7,3 +7,6 @@
 [submodule "Controller"]
 	path = Controller
 	url = https://github.com/WangZhiYao/HomeSensor-Controller.git
+[submodule "IoT"]
+	path = IoT
+	url = https://github.com/WangZhiYao/HomeSensor-IoT.git
